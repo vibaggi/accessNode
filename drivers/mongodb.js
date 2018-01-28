@@ -9,8 +9,7 @@ MongoClient.connect(url, function(err, db) {
 });
 
 function authenticate(user, password){
-  new Promise((resolve, reject) =>{
-      
+  new Promise((resolve, reject) =>{      
       
   })
 }
@@ -31,6 +30,24 @@ function createPass(RFID, name){
   })
 }
 
+function unlockPass(RFID){
+  //Para dar acesso ao passe existente.
+  return new Promise(function(resolve, reject){
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("acessodb");
+      var myquery = { RFID: RFID }; //argumento usado para procura
+      var newvalues = { authorized: true }; //dado atualizado
+      dbo.collection("pass").updateOne(myquery, {$set:newvalues}, function(err, res) {
+        if (err) reject(err);
+        db.close();
+        resolve("sucess")
+      });
+    });
+  });
+}
+
 module.exports = {
-  createPass:createPass
+  createPass:createPass,
+  unlockPass: unlockPass
 }

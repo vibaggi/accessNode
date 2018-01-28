@@ -14,16 +14,3 @@ function login(data){
     })
 }
 
-function createPass(data){
-    return new Promise(function(resolve, reject){
-        db.createPass(data.RFID, data.nome).then(response=>{
-            resolve(response)
-        }).catch(error=>{
-            reject(error)
-        })
-    })
-}
-
-module.exports = {
-    createPass: createPass
-}

@@ -1,9 +1,9 @@
 var router = require('express').Router();
-var arduinoController = require('../controllers/arduinoController')
+var mobileController = require('../controllers/mobileController')
 
 
 router.post("/createPass", function(req, res){
-    arduinoController.createPass(req.fields).then(response=>{
+    mobileController.createPass(req.fields).then(response=>{
         res.status(200).send("OK")
     }).catch(error=>{
         res.status(500).send(error)
