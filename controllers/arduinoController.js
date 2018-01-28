@@ -1,5 +1,6 @@
 var db = require('../drivers/mongodb')
 
+
 function login(data){
     //Será feita a verificação de login e gerado um token.
     //O Token é registrado no banco de dados e um novo token é gerado em todo login.
@@ -14,7 +15,7 @@ function login(data){
 }
 
 function createPass(data){
-    return new Promisse((resolve, reject)=>{
+    return new Promise(function(resolve, reject){
         db.createPass(data.RFID, data.nome).then(response=>{
             resolve(response)
         }).catch(error=>{
