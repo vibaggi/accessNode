@@ -10,4 +10,14 @@ router.post("/createPass", function(req, res){
     })    
 })
 
+router.post("/mobileLogin", function(req, res){
+    //campos a passar 'user' e 'password' formato JSON
+    mobileController.login(req.fields).then(response=>{
+        console.log(response)
+        res.status(200).send(response)//deve retornar o TOKEN
+    }).catch(error=>{
+        res.status(500).send(error)
+    })    
+})
+
 module.exports = router;
