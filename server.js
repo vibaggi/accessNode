@@ -7,9 +7,11 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 let arduinoRoutes = require('./routes/arduinoRoutes')
+let mobileRoutes = require('./routes/mobileRoutes')
 let mongo = require('./drivers/mongodb')
 
 app.use("/", arduinoRoutes)
+app.use("/", mobileRoutes)
 
 app.listen(app.get('port'), () => {
     console.log(`Servidor rodando em http://localhost:${app.get('port')}`)
